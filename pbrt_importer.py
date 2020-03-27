@@ -65,6 +65,14 @@ class PBRT_Importer(bpy.types.Operator):
                     if "yresolution" in s:
                         context.scene.render.resolution_y = float(strlist[idx+1])
 
+            if "pixelsamples" in line:
+                line=line.replace('[', '')
+                line=line.replace(']', '')
+                strlist = line.split()
+                for idx, s in enumerate(strlist):
+                    if "pixelsamples" in s:
+                        context.scene.custom.viewport_samples = float(strlist[idx+1])
+
             if "fov" in line:
                 line=line.replace('[', '')
                 line=line.replace(']', '')
