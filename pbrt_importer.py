@@ -193,13 +193,27 @@ class PBRT_Importer(bpy.types.Operator):
                     if not is_mirror and not is_texture:
                         mat.diffuse_color = diff
                         mat.specular_color = spec
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfDiffuse')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Color'].default_value = diff
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_mirror:
                         mat.metallic = 1.0
                         mat.roughness = 0.0
                         mat.use_nodes = True
-                        bsdf = mat.node_tree.nodes["Principled BSDF"]
-                        bsdf.inputs['Metallic'].default_value = 1.0
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfGlossy')
+                        bsdf.location = (0,0)
                         bsdf.inputs['Roughness'].default_value = 0.0
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_texture:
                         mat.use_nodes = True
                         bsdf = mat.node_tree.nodes["Principled BSDF"]
@@ -234,9 +248,27 @@ class PBRT_Importer(bpy.types.Operator):
                     if not is_mirror and not is_texture:
                         mat.diffuse_color = diff
                         mat.specular_color = spec
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfDiffuse')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Color'].default_value = diff
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_mirror:
                         mat.metallic = 1.0
                         mat.roughness = 0.0
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfGlossy')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Roughness'].default_value = 0.0
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     obj.data.materials.append(mat)
 
                 get_pos = False
@@ -264,9 +296,27 @@ class PBRT_Importer(bpy.types.Operator):
                     if not is_mirror and not is_texture:
                         mat.diffuse_color = diff
                         mat.specular_color = spec
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfDiffuse')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Color'].default_value = diff
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_mirror:
                         mat.metallic = 1.0
                         mat.roughness = 0.0
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfGlossy')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Roughness'].default_value = 0.0
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     obj.data.materials.append(mat)
                     
                 get_pos = False
@@ -301,13 +351,27 @@ class PBRT_Importer(bpy.types.Operator):
                     if not is_mirror and not is_texture:
                         mat.diffuse_color = diff
                         mat.specular_color = spec
+                        mat.use_nodes = True
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfDiffuse')
+                        bsdf.location = (0,0)
+                        bsdf.inputs['Color'].default_value = diff
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_mirror:
                         mat.metallic = 1.0
                         mat.roughness = 0.0
                         mat.use_nodes = True
-                        bsdf = mat.node_tree.nodes["Principled BSDF"]
-                        bsdf.inputs['Metallic'].default_value = 1.0
+                        nodes = mat.node_tree.nodes
+                        bsdf = nodes["Principled BSDF"]
+                        output = nodes["Material Output"]
+                        nodes.remove(bsdf)
+                        bsdf = nodes.new('ShaderNodeBsdfGlossy')
+                        bsdf.location = (0,0)
                         bsdf.inputs['Roughness'].default_value = 0.0
+                        mat.node_tree.links.new(output.inputs['Surface'], bsdf.outputs['BSDF'])
                     elif is_texture:
                         mat.use_nodes = True
                         bsdf = mat.node_tree.nodes["Principled BSDF"]
